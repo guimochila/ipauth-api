@@ -23,8 +23,11 @@ def authorized():
         username = request.args['username']
         key = request.args['key']
         skey = request.args['skey']
-        #visitorip = request.remote_addr
-        visitorip = request.headers.get('X-Real-IP')
+        if request.headers.get('X-Real-IP'):
+            visitorip = request.headers.get('X-Real-IP')
+        else
+            visitorip = request.remote_addr
+
 
     except:
         return abort(400)
